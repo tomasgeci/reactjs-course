@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React tutorial</title>
+    <!-- changed react version because createClass is deprecated in 15.x and missing in 16.x -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.2/react.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.6.2/react-dom.min.js"></script>
+    <!-- babel has 15.x version due to deprecated methods in react. version 6.x does not work  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.38/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      var TaskList = React.createClass({
+        getInitialState: function() {
+          return {
+            tasks: [
+              {title: 'Task nr. one', id: 1},
+              {title: 'Task nr. two', id: 2},
+              {title: 'Task nr. three', id: 3}
+            ]
+          }
+        },
+        render: function() {
+          return (
+            <ul>
+              {this.state.tasks.map(function(task) {
+                return <Task title={task.title} key={task.id}/>
+              })}
+            </ul>
+          )
+        }
+      });
+
+      // stateless component
+      var Task = function(props) {
+        return (
+          <li>Task: {props.title}</li>
+        )
+      };
+
+      ReactDOM.render(
+        <TaskList />,
+        document.getElementById('app')
+      )
+
+    </script>
+  </body>
+</html>
