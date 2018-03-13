@@ -18,7 +18,7 @@
             count: this.state.count + 1
           })
         },
-        // called once before rendered
+        // called once before rendered or created class
         getDefaultProps: function() {
           console.log("default props");
         },
@@ -42,14 +42,42 @@
             <button onClick={this.increment}>{this.state.count}</button>
           )
         },
-        // called only one after rendered
+        // called only once after rendered
         componentDidMount: function() {
           console.log("did mount and has rendered");
+          this.interval = setInterval(this.increment, 1000);
+        },
+        // called only once after rendered
+        componentWillUnmount: function() {
+          clearInterval(this.interval);
+          console.log("component unmounted");
+        }
+      });
+
+      var LifecycleContainer = React.createClass({
+        mount: function() {
+          ReactDOM.render(
+            <LifecycleComponent />,
+            document.getElementById('renderHere')
+          );
+        },
+        unmount: function() {
+          ReactDOM.unmountComponentAtNode(document.getElementById('renderHere'));
+        },
+        render: function() {
+          console.log("lifecycle container rendered");
+          return (
+            <div>
+              <button onClick={this.mount}>Mount</button>
+              <button onClick={this.unmount}>UnMount</button>
+              <div id="renderHere"></div>
+            </div>
+          )
         }
       });
 
       ReactDOM.render(
-        <LifecycleComponent />,
+        <LifecycleContainer />,
         document.getElementById('app')
       );
     </script>
