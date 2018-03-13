@@ -24,17 +24,35 @@
               count: this.state.count + value
            })
          },
+         getDefaultProps: function () {
+           return {
+             valueOne: 1,
+             valueTwo: 5,
+             valueThree: 10,
+             text: 'Add'
+           }
+         },
+         alert: function (){
+           alert('Clicked')
+         },
          render: function() {
            return (
              <div className="container">
                <h1>Count: {this.state.count}</h1>
-               <button className="btn blue-btn" onClick={this.incrementCount.bind(this, 1)}>Add 1</button>
-               <button className="btn green-btn" onClick={this.incrementCount.bind(this, 5)}>Add 5</button>
-               <button className="btn purple-btn" onClick={this.incrementCount.bind(this, 10)}>Add 10</button>
+               <Button style="btn blue-btn" text={`${this.props.text} ${this.props.valueOne}`} value={this.props.valueOne} clickHandler={this.incrementCount.bind(this, this.props.valueOne)}/>
+               <Button style="btn green-btn" text={`${this.props.text} ${this.props.valueTwo}`} value={this.props.valueTwo} clickHandler={this.incrementCount.bind(this, this.props.valueTwo)}/>
+               <Button style="btn purple-btn" text={`${this.props.text} ${this.props.valueThree}`} value={this.props.valueThree} clickHandler={this.incrementCount.bind(this, this.props.valueThree)}/>
+               <Button text="Alert" style="btn blue-btn" clickHandler={this.alert} />
              </div>
            )
          }
        });
+
+       var Button = function(props) {
+         return (
+           <button className={props.style} value={props.value} onClick={props.clickHandler}>{props.text}</button>
+         )
+       }
 
        ReactDOM.render(
          <CounterChallenge />,
