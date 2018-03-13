@@ -3,20 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <title>React tutorial</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.2.0/umd/react.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.2.0/umd/react-dom.development.js">
+</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.38/browser.min.js"></script>
   </head>
   <body>
     <div id="app"></div>
-    <script>
-    ReactDOM.render(
-      React.createElement(
-        'h1',
-        null,
-        'Hello world!'
-      ),
-      document.getElementById('app')
-    );
+    <script type="text/babel">
+      ReactDOM.render(
+        <h1>JSX element</h1>,
+        document.getElementById('app')
+      );
+
+    // ReactDOM.render(
+    //   React.createElement(
+    //     'h1',
+    //     null,
+    //     'Hello world!'
+    //   ),
+    //   document.getElementById('app')
+    // );
     </script>
   </body>
 </html>
